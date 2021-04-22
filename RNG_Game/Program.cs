@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 
 namespace RNG_Game
 {
@@ -6,6 +8,11 @@ namespace RNG_Game
     {
         static void Main(string[] args)
         {
+            string errorPath = Directory.GetCurrentDirectory() + "\\ErrorLogs.txt";
+            StreamWriter streamWriter = new StreamWriter(errorPath);
+            DateTime date = new DateTime();
+            List<string> errorList = new List<string>();
+            streamWriter.WriteLine("New Game initiated on " + date);
             var score = new Score();
             while (true)
             {   var welcome = "Welcome to a new game of, \"GUESS... THE... NUMBER!\"";
@@ -17,7 +24,7 @@ namespace RNG_Game
                 if (score.TotalAttempts == 0)
                 {
                     Console.WriteLine(welcome);
-                    System.Threading.Thread.Sleep(2000);
+                    System.Threading.Thread.Sleep(1000);
 
                 }
                 Console.WriteLine(question);
@@ -26,6 +33,13 @@ namespace RNG_Game
                 var userAnswer = Console.ReadLine().ToLower();
                 if (userAnswer == "e")
                 {
+                    string[] errors = errorList.ToArray();
+                    foreach (string error in errors)
+                    { 
+                        Console.WriteLine("Error:", error.ToString());
+                        streamWriter.WriteLine(error);
+                    }
+                    streamWriter.Close();
                     break;
                 }
                 if (userAnswer == "r")
@@ -62,7 +76,8 @@ namespace RNG_Game
 
                 }
 
-                catch(FormatException) {
+                catch(FormatException ex) {
+                    errorList.Add(ex.Message.ToString());
                     Console.WriteLine("'" + userAnswer + "' is not a number. Please try again using a whole number between 1 and 5.");
                     score.TotalAttempts++;
                 }
