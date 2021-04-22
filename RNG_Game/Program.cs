@@ -6,8 +6,7 @@ namespace RNG_Game
     {
         static void Main(string[] args)
         {
-            double correctAnswers = 0;
-            double totalAttempts = 0;
+            var score = new Score();
             while (true)
             {   var welcome = "Welcome to a new game of, \"GUESS... THE... NUMBER!\"";
                 var exit = "Type 'r' to start over and reset your score. Type 'e' to exit.";
@@ -15,7 +14,7 @@ namespace RNG_Game
                 var hint = "Hint: It's between 1 and 5 and is a whole number.";
                 Random rnd = new Random();
                 double randomNumber = rnd.Next(1, 5);
-                if (totalAttempts == 0)
+                if (score.TotalAttempts == 0)
                 {
                     Console.WriteLine(welcome);
                     System.Threading.Thread.Sleep(2000);
@@ -31,8 +30,8 @@ namespace RNG_Game
                 }
                 if (userAnswer == "r")
                 {
-                    totalAttempts = 0;
-                    correctAnswers = 0;
+                    score.TotalAttempts = 0;
+                    score.CorrectAnswers = 0;
                     Console.WriteLine("Got it! Your score has been reset.");
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine("... Generating new game... This usually takes like 3-4 seconds... ");
@@ -46,8 +45,8 @@ namespace RNG_Game
                     if (number == randomNumber)
                     {
                         Console.WriteLine("'" + userAnswer + "' is correct! Good job!");
-                        totalAttempts++;
-                        correctAnswers++;
+                        score.TotalAttempts++;
+                        score.CorrectAnswers++;
                     }
                     else {
                         Console.WriteLine("*Womp-womp*...'" + userAnswer + "' is incorrect. The correct answer was '" + randomNumber + ".' Please, try again.");
@@ -58,14 +57,14 @@ namespace RNG_Game
                         {
                             Console.WriteLine("*** Hint: The answer will always be a whole number.");
                         }
-                        totalAttempts++;
+                        score.TotalAttempts++;
                     }
 
                 }
 
                 catch(FormatException) {
                     Console.WriteLine("'" + userAnswer + "' is not a number. Please try again using a whole number between 1 and 5.");
-                    totalAttempts++;
+                    score.TotalAttempts++;
                 }
 
 
@@ -73,9 +72,9 @@ namespace RNG_Game
                 System.Threading.Thread.Sleep(1000);
                 Console.WriteLine("***Current Score***");
                 System.Threading.Thread.Sleep(1000);
-                Console.WriteLine("Correct Answers: " + correctAnswers);
+                Console.WriteLine("Correct Answers: " + score.CorrectAnswers);
                 System.Threading.Thread.Sleep(1000);
-                Console.WriteLine("Total Attempts: " + totalAttempts);
+                Console.WriteLine("Total Attempts: " + score.TotalAttempts);
                 System.Threading.Thread.Sleep(1000);
                 Console.WriteLine("******************");
                 System.Threading.Thread.Sleep(1000);
@@ -85,7 +84,7 @@ namespace RNG_Game
             }
         }
 
-        // either use global variables for correctAnswers and totalAttempts or pass as params to this function
+        // either use global variables for score.CorrectAnswers and score.TotalAttempts or pass as params to this function
         //static void Scoreboard ()
     }
 }
