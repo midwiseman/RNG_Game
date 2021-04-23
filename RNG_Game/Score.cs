@@ -2,9 +2,14 @@
 
 public class Score
 {
-	private double CorrectAnswers = 0;
-	private double TotalAttempts = 0;
+	private double CorrectAnswers;
+	private double TotalAttempts;
 
+    public Score(int correctAnswers, int totalAttempts)
+    {
+        CorrectAnswers = correctAnswers;
+        TotalAttempts = totalAttempts;
+    }
 	public void printScores()
     {
         Console.WriteLine("Correct Answers: " + CorrectAnswers);

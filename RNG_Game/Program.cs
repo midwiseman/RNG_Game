@@ -10,7 +10,7 @@ namespace RNG_Game
             string errorPath = Directory.GetCurrentDirectory() + "\\ErrorLogs.txt";
             StreamWriter streamWriter = new StreamWriter(errorPath);
             DateTime date = DateTime.Now;
-            var score = new Score();
+            var score = new Score(0,0);
             while (true)
             {   var welcome = "Welcome to a new game of, \"GUESS... THE... NUMBER!\"";
                 var exit = "Type 'r' to start over and reset your score. Type 'e' to exit.";
