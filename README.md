@@ -1,4 +1,4 @@
-Hello! Thanks for reviewing my front-end project for Code Louisville C# 2021!
+Hello! Thanks for reviewing my back-end project for Code Louisville C# 2021!
 
 Inspired by the movie, Third Eye Spies, I thought a random number generator that kept score and gave feedback based on user-input would be a rewarding project. A user is prompted to guess a number 1-5. Then, based on the user's input, messages are displayed related to the validity of input, and accuracy of the user's guess.
 The user can choose to exit, or restart the game at any point they're prompted to guess a random number.
